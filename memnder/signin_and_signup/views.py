@@ -21,11 +21,11 @@ def signup(request):
 	    password = request.data.get("password")
 	    password2 = request.data.get("password2")
 	    if username is None or password is None or password2 is None:
-	        return Response({'error': 'Please provide both username and password'},
+	        return Response({'error': 'Какое то из полей не заполнено!'},
 	                        status=HTTP_400_BAD_REQUEST)
 
 	    if password!=password2:
-	        return Response({'error': 'password != password2'},
+	        return Response({'error': 'Пароли не совпадают!'},
 	                        status=HTTP_400_BAD_REQUEST)
 
 
