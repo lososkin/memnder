@@ -105,5 +105,5 @@ class MemByUserListView(generics.ListAPIView):
 	authentication_class = (TokenAuthentication,)
 	def get_queryset(self):
 		user = self.request.user
-		queryset = models.Mem.objects.filter(user_ForeignKey=user)
+		queryset = models.Mem.objects.filter(user_ForeignKey=user).order_by('-date')
 		return queryset

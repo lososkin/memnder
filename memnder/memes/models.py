@@ -9,6 +9,7 @@ class Mem(models.Model):
 	user_ForeignKey=models.ForeignKey(User, on_delete=models.PROTECT)
 	likes=models.IntegerField(default=0)
 	dislikes=models.IntegerField(default=0)
+	date = models.DateTimeField(auto_now=True)
 
 class User_likes_mem(models.Model):
 	class Meta():
@@ -16,6 +17,7 @@ class User_likes_mem(models.Model):
 	user_ForeignKey=models.ForeignKey(User, on_delete=models.PROTECT)
 	mem_ForeignKey=models.ForeignKey(Mem, on_delete=models.PROTECT)
 	value=models.IntegerField() #1 or -1
+	date = models.DateTimeField(auto_now=True)
 
 class Mem_in_q(models.Model):
 	class Meta():
