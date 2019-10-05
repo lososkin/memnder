@@ -63,7 +63,7 @@ def get_mem(request):
 		else:
 			mem = rand_mem(user)
 			if mem is None:
-				return Response("Нет мемчиков больше", status=HTTP_404_NOT_FOUND) #????????
+				return Response("Нет мемчиков больше", status=HTTP_400_BAD_REQUEST) #????????
 			mem_in_queue=models.Mem_in_q.objects.create(user_ForeignKey=user,mem_ForeignKey=mem)
 			mem_in_queue.save()
 			return Response({'text':mem.text,'img':mem.img.url}, status=HTTP_200_OK)
