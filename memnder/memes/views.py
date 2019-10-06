@@ -8,7 +8,8 @@ from rest_framework.status import (
     HTTP_400_BAD_REQUEST,
     HTTP_404_NOT_FOUND,
     HTTP_200_OK,
-    HTTP_201_CREATED
+    HTTP_201_CREATED,
+    HTTP_204_NO_CONTENT
 )
 from rest_framework.response import Response
 # Create your views here.
@@ -52,7 +53,7 @@ def rand_mem(user):
 	mem = random.choice(memes)
 	return mem #<---------Вот тут крутой алгоритм придумать нужно, тут кароче нужно проверку еще сделать что этот мемчик еще не давали юзеру
 
-@api_view(["GET"])
+@api_view(["POST"])
 @permission_classes((IsAuthenticated,))
 def get_mem(request):
 	try:
@@ -64,7 +65,7 @@ def get_mem(request):
 		else:
 			mem = rand_mem(user)
 			if mem is None:
-				return Response("Нет мемчиков больше", status=HTTP_400_BAD_REQUEST) #????????
+				return Response("Нет мемчиков больше", status=HTTP_204_NO_CONTENT) 
 			mem_in_queue=models.Mem_in_q.objects.create(user_ForeignKey=user,mem_ForeignKey=mem)
 			mem_in_queue.save()
 			return Response({'text':mem.text,'img':mem.img.url}, status=HTTP_200_OK)
