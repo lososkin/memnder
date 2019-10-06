@@ -5,7 +5,7 @@ class Mem(models.Model):
 	class Meta():
 		db_table='mem'
 	img=models.ImageField(upload_to='images')
-	text=models.TextField(max_length=3000)
+	text=models.TextField(max_length=3000,blank=True)
 	user_ForeignKey=models.ForeignKey(User, on_delete=models.PROTECT)
 	likes=models.IntegerField(default=0)
 	dislikes=models.IntegerField(default=0)
