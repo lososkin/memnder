@@ -27,18 +27,18 @@ import random
 @api_view(["POST"])
 @permission_classes((IsAuthenticated,))
 def create_mem(request):
-	try:
-		user = request.user
-		mem = models.Mem(user_ForeignKey=user)
-		mem_serializer = MemSerializer(mem,data=request.data)
-		if mem_serializer.is_valid():
-			mem_serializer.save()
-			return Response(mem_serializer.data, status=HTTP_201_CREATED)
-		else:
-			return Response(mem_serializer.errors, status=HTTP_400_BAD_REQUEST)
-		return Response("OK", status=HTTP_200_OK)
-	except:
-		return Response({'error': 'Что-то пошло не так..'},status=HTTP_400_BAD_REQUEST)
+	# try:
+	user = request.user
+	mem = models.Mem(user_ForeignKey=user)
+	mem_serializer = MemSerializer(mem,data=request.data)
+	if mem_serializer.is_valid():
+		mem_serializer.save()
+		return Response(mem_serializer.data, status=HTTP_201_CREATED)
+	else:
+		return Response(mem_serializer.errors, status=HTTP_400_BAD_REQUEST)
+	return Response("OK", status=HTTP_200_OK)
+	# except:
+	# 	return Response({'error': 'Что-то пошло не так..'},status=HTTP_400_BAD_REQUEST)
 
 
 def rand_mem(user):
