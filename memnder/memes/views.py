@@ -16,6 +16,7 @@ from . import models
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from .serializers import MemSerializer
+import random
 
 #http -f POST http://127.0.0.1:8000/memes/api/create/ 'Authorization: Token a42e9cd7e07ef3a896ff93f659f4c63d13deb45e' text=xyi img@~/1.jpg
 #http GET http://127.0.0.1:8000/memes/api/get/ 'Authorization: Token a42e9cd7e07ef3a896ff93f659f4c63d13deb45e'
@@ -48,7 +49,7 @@ def rand_mem(user):
 	if len(memes)==0:
 		return None
 	#memes <--- мемчики которые юзер еще не видел
-	mem = memes[0]
+	mem = random.choice(memes)
 	return mem #<---------Вот тут крутой алгоритм придумать нужно, тут кароче нужно проверку еще сделать что этот мемчик еще не давали юзеру
 
 @api_view(["GET"])
