@@ -7,4 +7,5 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
 	path('api/login/', obtain_auth_token),
 	path('api/signup/', views.signup),
+	path('api/checktoken/', views.checktoken),
 ]
