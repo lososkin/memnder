@@ -16,27 +16,21 @@ class Mem(models.Model):
 	dislikes=models.IntegerField(default=0)
 	date = models.DateTimeField(auto_now=True)
 
-	# def save(self):
-	# 	#Opening the uploaded image
-	# 	im = Image.open(self.img)
+	def save(self):
+		#Opening the uploaded image
+		im = Image.open(self.img)
 
-	# 	output = BytesIO()
+		output = BytesIO()
 
-	# 	#Resize/modify the image
-	# 	size = (400,400)
-	# 	im.thumbnail(size, Image.ANTIALIAS)
-	# 	background = Image.new('RGBA', size, (255, 255, 255, 0))
-	# 	background.paste(
-	# 		im, (int((size[0] - im.size[0]) / 2), int((size[1] - im.size[1]) / 2))
-	# 	)
-	# 	im = background.convert('RGB')
-
-	# 	#after modifications, save it to the output
-	# 	im.save(output, format='JPEG', quality=100)
-	# 	output.seek(0)
-	# 	#change the imagefield value to be the newley modifed image value
-	# 	self.img = InMemoryUploadedFile(output,'ImageField', "%s.jpg" %self.img.name.split('.')[0], 'image/jpeg', sys.getsizeof(output), None)
-	# 	super(Mem,self).save()
+		#Resize/modify the image
+		size = (400,400)
+		im.thumbnail(size, Image.ANTIALIAS)
+		#after modifications, save it to the output
+		im.save(output, format='JPEG', quality=100)
+		output.seek(0)
+		#change the imagefield value to be the newley modifed image value
+		self.img = InMemoryUploadedFile(output,'ImageField', "%s.jpg" %self.img.name.split('.')[0], 'image/jpeg', sys.getsizeof(output), None)
+		super(Mem,self).save()
 
 class User_likes_mem(models.Model):
 	class Meta():
